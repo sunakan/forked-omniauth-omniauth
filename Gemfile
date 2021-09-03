@@ -27,7 +27,7 @@ group :test do
   gem 'rspec', '~> 3.5.0'
   gem 'rubocop', '>= 0.58.2', '< 0.69.0', :platforms => %i[ruby_20 ruby_21 ruby_22 ruby_23 ruby_24]
   gem 'simplecov-lcov'
-  gem 'tins', '~> 1.13.0', :platforms => %i[jruby_18 jruby_19 ruby_19]
+  gem 'tins', '~> 1.13', :platforms => %i[jruby_18 jruby_19 ruby_19]
 end
 
 gemspec
