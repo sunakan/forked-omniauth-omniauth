@@ -96,8 +96,10 @@ something like this:
 
 ```ruby
 class SessionsController < ApplicationController
-  # production環境以外なら、verify_authenticity_tokenをスキップ
-  skip_before_action :verify_authenticity_token, only: :create unless Rails.env.production?
+  # コールバック時にPOSTするストラテジーを使用している場合は、
+  #   コールバックアクションのみで認証トークンのチェックを省略する必要があります。
+  #   (常にverify_authenticity_tokenをスキップ)
+  skip_before_action :verify_authenticity_token, only: :create
 
   def create
     @user = User.find_or_create_from_auth_hash(auth_hash)
