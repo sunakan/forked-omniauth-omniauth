@@ -1,10 +1,14 @@
 if RUBY_VERSION >= '1.9'
   require 'simplecov'
   require 'coveralls'
+  require 'simplecov-lcov'
+
+  SimpleCov::Formatter::LCovFormatter.config.report_with_single_file = true
 
   SimpleCov.formatters = [
     SimpleCov::Formatter::HTMLFormatter,
-    Coveralls::SimpleCov::Formatter
+    SimpleCov::Formatter::LcovFormatter,
+    Coveralls::SimpleCov::Formatter,
   ]
 
   SimpleCov.start do
