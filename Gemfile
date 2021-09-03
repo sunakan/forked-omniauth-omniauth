@@ -1,3 +1,8 @@
+################################################################################
+# Note
+# :platforms => [jruby_18]
+# jruby 1.8の時に入る
+################################################################################
 source 'https://rubygems.org'
 
 gem 'jruby-openssl', '~> 0.9.19', :platforms => :jruby
@@ -14,7 +19,7 @@ end
 group :test do
   gem 'coveralls', :require => false
   gem 'hashie', '>= 3.4.6', '~> 4.0.0', :platforms => [:jruby_18]
-  gem 'json', '~> 2.0.3', :platforms => %i[jruby_18 jruby_19 ruby_19]
+  gem 'json', '~> 2.3.0', :platforms => %i[jruby_18 jruby_19 ruby_19]
   gem 'mime-types', '~> 3.1', :platforms => [:jruby_18]
   gem 'rack', '>= 2.0.6', :platforms => %i[jruby_18 jruby_19 ruby_19 ruby_20 ruby_21]
   gem 'rack-test'
