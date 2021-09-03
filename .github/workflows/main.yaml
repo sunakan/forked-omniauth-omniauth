@@ -1,0 +1,54 @@
+################################################################################
+# Note
+# fail-fast
+#   GitHub ActionsのMatrixビルドで複数Jobが並列で走ったとき、
+#   あるJobがfailするとデフォルトでは他のJobは途中でCancelされる
+#   `fail-fast: false` => Cancelしない
+################################################################################
+name: Ruby
+
+on:
+  push:
+    branches: [ shakyo-to-v2.0.0 ]
+
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu, macos ]
+        ruby: [ 2.6, 2.7 ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: bundle install
+        run: bundle install
+      - name: てすとだぁぁぁ
+        run: bundle exec rake
+  test-jruby:
+    runs-on: ubuntu-18.04
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu, macos ]
+        jruby: [ 2.6, 2.7 ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.jruby }}
+          bundler-cache: true
+      - name: bundle install
+        env:
+          JRUBY_OPTS: --debug
+        run: bundle install
+      - name: JRubyでてすとだぁぁぁ
+        env:
+          JRUBY_OPTS: --debug
+        run: bundle exec rake
